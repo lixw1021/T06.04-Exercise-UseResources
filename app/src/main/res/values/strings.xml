@@ -22,14 +22,14 @@
 
     <!-- Value in SharedPreferences for red color option -->
     <string name="pref_color_red_value" translatable="false">red</string>
-
-    <!-- Value in SharedPreferences for blue color option -->
     <string name="pref_color_blue_value" translatable="false">blue</string>
-
-    <!-- Value in SharedPreferences for green color option -->
     <string name="pref_color_green_value" translatable="false">green</string>
 
-    <string name="pref_color_key">show_key</string>
+    <string name="pref_color_key">show_color_key</string>
     <string name="pref_color_title">Show Color</string>
     <string name="pref_color_default">@string/pref_color_red_value</string>
+
+    <string name="pref_size_key">size_key</string>
+    <string name="pref_size_title">Size</string>
+    <string name="pref_size_default_value">1</string>
 </resources>

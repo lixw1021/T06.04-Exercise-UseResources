@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <CheckBoxPreference
         android:defaultValue="@bool/pref_show_bass_default"
@@ -28,6 +29,12 @@
         android:entries="@array/color_entry"
         android:entryValues="@array/color_entries_value"
         android:key="@string/pref_color_key"
-        android:title="@string/pref_color_title"
-        android:summary="%s"/>
+        android:summary="%s"
+        android:title="@string/pref_color_title" />
+
+    <EditTextPreference
+        android:defaultValue="@string/pref_size_default_value"
+        android:key="@string/pref_size_key"
+        android:title="@string/pref_size_title" />
+
 </PreferenceScreen>

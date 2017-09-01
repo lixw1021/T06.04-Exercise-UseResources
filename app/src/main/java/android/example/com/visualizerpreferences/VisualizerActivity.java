@@ -28,6 +28,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,12 +54,16 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
     private void setupSharedPreferences() {
         // Get all of the values from shared preferences to set it up
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        // TODO (4) Use resources here instead of the hard coded string and boolean
-        mVisualizerView.setShowBass(sharedPreferences.getBoolean( getString(R.string.pref_show_bass_key), getResources().getBoolean(R.bool.pref_show_bass_default)));
-        mVisualizerView.setShowMid(sharedPreferences.getBoolean(getString(R.string.pref_show_mid_key), getResources().getBoolean(R.bool.pref_show_mid_default)));
-        mVisualizerView.setShowTreble(sharedPreferences.getBoolean(getString(R.string.pref_show_treble_key), getResources().getBoolean(R.bool.pref_show_treble_default)));
-        mVisualizerView.setMinSizeScale(1);
-        mVisualizerView.setColor(sharedPreferences.getString( getString(R.string.pref_color_key), getResources().getString(R.string.pref_color_default)));
+        mVisualizerView.setShowBass(sharedPreferences.getBoolean( getString(R.string.pref_show_bass_key),
+                getResources().getBoolean(R.bool.pref_show_bass_default)));
+        mVisualizerView.setShowMid(sharedPreferences.getBoolean(getString(R.string.pref_show_mid_key),
+                getResources().getBoolean(R.bool.pref_show_mid_default)));
+        mVisualizerView.setShowTreble(sharedPreferences.getBoolean(getString(R.string.pref_show_treble_key),
+                getResources().getBoolean(R.bool.pref_show_treble_default)));
+        mVisualizerView.setMinSizeScale(Float.parseFloat(sharedPreferences.getString(getString(R.string.pref_size_key),
+                getString(R.string.pref_size_default_value))));
+        mVisualizerView.setColor(sharedPreferences.getString( getString(R.string.pref_color_key),
+                getString(R.string.pref_color_default)));
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
@@ -160,6 +165,7 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
         if (key.equals(getString(R.string.pref_show_bass_key))) {
             mVisualizerView.setShowBass(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.pref_show_bass_default)));
         }
@@ -171,6 +177,9 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
         }
         if (key.equals(getString(R.string.pref_color_key))) {
             mVisualizerView.setColor(sharedPreferences.getString(key, getResources().getString(R.string.pref_color_default)));
+        }
+        if (key.equals(getString(R.string.pref_size_key))) {
+            mVisualizerView.setMinSizeScale(Float.parseFloat(sharedPreferences.getString(getString(R.string.pref_size_key), "1")));
         }
     }
 }
